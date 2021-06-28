@@ -34,7 +34,7 @@ public class CalendarService {
         initialize();
 
         if (calendarList.stream().anyMatch(x -> x.getLocationId().equals(calendar.getStoreId()))) {
-            if (calendar.getRequestedDate().getTime() > calendarList.stream().filter(x -> x.getLocationId().equals(calendar.getStoreId())).findAny().get().getCutOffTime()) {
+            if (calendar.getRequestedDate().getTime() > Long.parseLong(calendarList.stream().filter(x -> x.getLocationId().equals(calendar.getStoreId())).findAny().get().getCutOffTime())) {
                 CalendarResponse c = new CalendarResponse(calendar, "Not Available");
                 return c;
             } else {
